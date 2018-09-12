@@ -1,0 +1,28 @@
+<h1>Groups I can join</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>No. of Members</th>
+      <th>Tournaments</th>
+      <th>Admin</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <% if user_admin_in? group %>
+        <tr class="info">
+      <% else %>
+        <tr>
+      <% end%>
+          <td><%= link_to group.name, group %></td>
+          <td><%= group.users.count %></td>
+          <td><%= GroupUser.find_tournaments_of(group).map{ |trnmnt| trnmnt.name }.join(" | ") %></td>
+          <td><%= admin_of(group).name%></td>
+          <td><%= button_to "Join Group", messages_path(:user_id => current_user.id, :type => "JoinRequest", :group_id => group.id),  method: :post  %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

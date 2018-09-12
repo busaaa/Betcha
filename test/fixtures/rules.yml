@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  perfect: 1
+  result: 1
+  one_perfect: 1
+  nothing: 1
+  penalty: MyString
+  default: false
+
+two:
+  name: MyString
+  perfect: 1
+  result: 1
+  one_perfect: 1
+  nothing: 1
+  penalty: MyString
+  default: false

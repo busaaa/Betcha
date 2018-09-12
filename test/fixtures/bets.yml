@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  changable: false
+  team1_bet: 1
+  team2_bet: 1
+  penalty: MyString
+  betable: one
+  betable_type: Betable
+
+two:
+  changable: false
+  team1_bet: 1
+  team2_bet: 1
+  penalty: MyString
+  betable: two
+  betable_type: Betable

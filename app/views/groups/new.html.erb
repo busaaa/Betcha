@@ -1,0 +1,15 @@
+<% provide(:title, 'New Group') %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@group, url: groups_path) do |f| %>
+
+      <%= f.label :name, "Pick a nice name for your group" %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= select_tag "tournaments[]", options_from_collection_for_select(@tournaments, :id, :name), multiple: true %>
+
+      <%= f.submit "Create group", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

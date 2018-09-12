@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tournament_id: 1
+  team1: MyString
+  team2: MyString
+  start_time: 2018-09-11 09:55:29
+  team1_result: 1
+  team2_result: 1
+  penalty: MyString
+
+two:
+  tournament_id: 1
+  team1: MyString
+  team2: MyString
+  start_time: 2018-09-11 09:55:29
+  team1_result: 1
+  team2_result: 1
+  penalty: MyString

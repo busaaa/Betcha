@@ -1,0 +1,47 @@
+<%= link_to "PLACE a BET", user_user_only_tournaments_path(params[:id]), class: "btn btn-default" %>
+<div class="container-fluid">
+<div class="row-fluid">
+  <div class="col-sm-4">
+    <h2>My Groups</h2>
+    <section>
+      <ul class="users">
+        <% @selected_user_groups.each do |group| %>
+          <% if user_admin_in? group %>
+            <li style="font-weight:bold">
+          <% else%>
+            <li>
+          <% end%>
+            <%= link_to group.name, group %>
+            <%= group.users.count %>
+          </li>
+        <% end %>
+        <li>
+          <span><%= link_to "ALL my Groups", user_user_only_groups_path(params[:id]), class: "btn btn-default" %></span>
+          <span><%= link_to "JOIN a Group", groups_path, class: "btn btn-default" %></span>
+          <span><%= link_to "CREATE new Group", new_group_path, class: "btn btn-default" %></span>
+        </li>
+      </ul>
+    </section>
+     </div>
+
+  <div class="col-sm-8">
+    <h2>RANKING</h2>
+
+
+    <ul class="users">
+      <% @user_groups.each do |group| %>
+        <li>
+          <%= link_to group.name, group %>
+          <%= group.users.count %>
+          <%= GroupUser.find_group_user_by_ids(group.id, params[:id]).points %>
+          <%= GroupUser.find_group_user_by_ids(group.id, params[:id]).rank %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+</div>
+
+<%= link_to "CREATE MY OWN TOURNAMENT", new_tournament_path, class: "btn btn-default" %>
+
+

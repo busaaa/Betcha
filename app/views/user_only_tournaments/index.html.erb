@@ -1,0 +1,25 @@
+<h1>My TOURNAMENTs</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>No. of Games</th>
+      <th>My groups having this tournament</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_tournaments.each do |tournament| %>
+      <% if tournament.private == current_user.id%>
+        <tr class="info">
+      <% else %>
+        <tr>
+      <% end%>
+          <td><%= link_to tournament.name, user_user_only_tournament_path(params[:user_id], tournament.id) %></td>
+          <td><%= tournament.games.count %></td>
+          <td><%= GroupUserTournament.user_groups_having_tournament(params[:user_id], tournament.id).map{ |trnmnt| trnmnt.name }.join(" | ") %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

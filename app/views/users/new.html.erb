@@ -1,0 +1,24 @@
+<% provide(:title, 'Sign up') %>
+<h1><a href="https://www.youtube.com/watch?v=PWgvGjAhvIw&t=1m41s">HEY YA</a>, it only takes 10 seconds to SIGN UP</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user, url: signup_path) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name, "Pick a nice username" %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email, "We'll need an email you use for sh** like this" %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password, "Give a password" %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "First challange is to try to rewrite that password" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit "Create, already!", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<h1>My GROUPs</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>No. of Mates</th>
+      <th>Points</th>
+      <th>Rank</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_groups.each do |group| %>
+      <% if group.admin_id == current_user.id%>
+        <tr class="info">
+      <% else %>
+        <tr>
+      <% end%>
+          <td><%= link_to group.name, user_user_only_group_path(params[:user_id], group.id) %></td>
+          <td><%= group.users.count %></td>
+          <td><%= GroupUser.find_by(group_id: group.id, user_id: params[:user_id]).points %></td>
+          <td><%= GroupUser.find_by(group_id: group.id, user_id: params[:user_id]).rank %></td>
+          <td><%= link_to "Leave Group", group_user_path(GroupUser.find_by(group_id: group.id, user_id: params[:user_id]).id), method: :delete, data: { confirm: "Are you sure you wanna leave this amazing Group: #{group.name}?" } %></td>
+        <% if current_user.id == group.admin_id %>
+          <td>
+            <%= form_tag(group_path(group), method: :patch) do %>
+              <%= select_tag "new_admin_id", options_from_collection_for_select(User.find_group_members_but_admin_in(group), "id", "name", 1) %>
+              <%= submit_tag "to be new admin" %>
+            <% end %>
+          </td>
+          <td><%= link_to "Delete Group", group_path(group.id), method: :delete, data: { confirm: "Are you sure you you don't wanna delegate the admin rights of #{group.name.upcase} group, instead of deleting it?" } %></td>
+        <% end %>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
